@@ -35,7 +35,25 @@ http://localhost:8080/swagger-ui.html?urls.primaryName=adidas-city-itinerary-man
 
 ##### How to test
 
-Execute docker-compose up -d in order to load the applications.
+In order to run the project you'll need to build the docker images. 
+Inside each folder you'll need to execute the following commands:
+
+**adidas-city-itinerary-management**
+- *>mvn clean package* : to build
+- *>docker build . -t adidas-city-itinerary-management:latest* : to build
+
+**adidas-city-itinerary-search**
+- *>mvn clean package* : to build
+- *>docker build . -t adidas-city-itinerary-search:latest* : to build
+
+**gateway-server**
+- *>mvn clean package* : to build
+- *>docker build . -t gateway-server:latest* : to build
+
+After executing, the commands you may execute docker-compose up -d in order to load the applications.
+
+If you wish to run the applications without docker, you may use the docker-compose-lite.yml file. Just make sure
+that you change the variables such as the ip's used by consul.
 
 There is a routine that will load data into neo4j when you start the application.
 Four cities will be loaded and itineraries will be created between them.

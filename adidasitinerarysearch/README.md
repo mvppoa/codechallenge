@@ -10,8 +10,8 @@ load data for testing.
 
 | Service       | EndPoint                                                                 | Method | Description                                      |
 | ------------- | ------------------------------------------------------------------------ | :-----:| ------------------------------------------------ |
-| Itinerary     | /api/search/connections/shortest/path/{originCity}/{destinyCity}      | GET    | Return all itineraries given an origin city      |
-| Itinerary     | /api/search/connections/shortest/distance/{originCity}/{destinyCity}  | GET    | Return created itinerary between cities          |
+| Search        | /api/search/connections/shortest/path/{originCity}/{destinyCity}         | GET    | Return all itineraries given an origin city      |
+| Search        | /api/search/connections/shortest/distance/{originCity}/{destinyCity}     | GET    | Return created itinerary between cities          |
 
 ## Technologies:
 

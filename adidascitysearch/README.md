@@ -12,7 +12,7 @@ load data for testing.
 | Service       | EndPoint                      | Method | Description                                      |
 | ------------- | ----------------------------- | :-----:| ------------------------------------------------ |
 | City          | /api/city/add                 | POST   | Add a single city to the database                |
-| City          | /api/city/{id]                | GET    | Return city details                              |
+| City          | /api/city/{id}                | GET    | Return city details                              |
 | Itinerary     | /api/itinerary/city/{id}      | GET    | Return all itineraries given an origin city      |
 | Itinerary     | /api/itinerary/join           | POST   | Return created itinerary between cities          |
 
