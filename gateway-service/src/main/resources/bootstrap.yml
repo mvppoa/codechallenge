@@ -1,0 +1,12 @@
+spring:
+  application:
+        name: gateway-service
+  cloud:
+        consul:
+            config:
+                fail-fast: false # if not in "prod" profile, do not force to use Spring Cloud Config
+                profile-separator: "-"
+            discovery:
+                tags: profile=${spring.profiles.active}, version=${info.project.version}
+            host: localhost
+            port: 8500

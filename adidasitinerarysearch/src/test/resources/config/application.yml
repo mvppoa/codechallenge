@@ -1,0 +1,21 @@
+spring:
+    application:
+        name: adidas-city-itinerary-search
+    mail:
+        host: localhost
+    messages:
+        basename: i18n/messages
+    mvc:
+        favicon:
+            enabled: false
+    thymeleaf:
+        mode: HTML
+
+
+server:
+    port: 10344
+    address: localhost
+
+info:
+    project:
+        version: #project.version#

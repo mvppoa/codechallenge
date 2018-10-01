@@ -1,0 +1,53 @@
+version: "3"
+
+services:
+
+  consul:
+    image: consul:latest
+    container_name: consul
+    hostname: consul
+    ports:
+      - "8400:8400"
+      - "8500:8500"
+      - "8600:53"
+      - "172.17.0.1:53:53/udp"
+
+  neo4j-service:
+    image: neo4j:3.4.7
+    container_name: neo4j-service
+    ports:
+      - 7474:7474
+      - 7687:7687
+    environment:
+      #For testing purposes only
+      NEO4J_AUTH: none
+
+  gateway-service:
+    image: gateway-service:latest
+    container_name: gateway-service
+    ports:
+      - 8080:8080
+    environment:
+      SPRING_CLOUD_CONSUL_DISCOVERY_IP_ADDRESS: 172.17.0.1
+      SPRING_CLOUD_CONSUL_HOST: 172.17.0.1
+
+  adidas-city-itinerary-management:
+    image: adidas-city-itinerary-management:latest
+    container_name: adidas-city-itinerary-management
+    ports:
+      - 8081:8081
+    environment:
+      SPRING_PROFILES_ACTIVE: dev,swagger
+      SPRING_DATA_NEO4J_URI: http://172.17.0.1:7474
+      SPRING_CLOUD_CONSUL_DISCOVERY_IP_ADDRESS: 172.17.0.1
+      SPRING_CLOUD_CONSUL_HOST: 172.17.0.1
+
+  adidas-city-itinerary-search:
+    image: adidas-city-itinerary-search:latest
+    container_name: adidas-city-itinerary-search
+    ports:
+      - 8082:8082
+    environment:
+      SPRING_PROFILES_ACTIVE: dev,swagger
+      SPRING_CLOUD_CONSUL_DISCOVERY_IP_ADDRESS: 172.17.0.1
+      SPRING_CLOUD_CONSUL_HOST: 172.17.0.1

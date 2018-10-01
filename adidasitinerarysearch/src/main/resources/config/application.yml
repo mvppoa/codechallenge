@@ -1,0 +1,66 @@
+
+
+ribbon:
+    eureka:
+        enabled: true
+feign:
+    hystrix:
+        enabled: true
+
+hystrix:
+  share-security-context: true
+  command:
+    default:
+      coreSize: 20
+      maximumSize: 500
+      allowMaximumSizeToDivergeFromCoreSize: true
+      maxQueueSize: 50000
+      queueSizeRejectionThreshold: 50000
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 100000
+
+management:
+    endpoints:
+        web:
+            base-path: /management
+            exposure:
+                include: ["configprops", "env", "health", "info", "threaddump"]
+    endpoint:
+        health:
+            show-details: when_authorized
+    health:
+        mail:
+            enabled: false
+    metrics:
+        enabled: false
+
+spring:
+    application:
+        name: adidas-city-itinerary-search
+    messages:
+        basename: i18n/messages
+    mvc:
+        favicon:
+            enabled: false
+    thymeleaf:
+        mode: HTML
+    jackson:
+        serialization:
+            write_dates_as_timestamps: false
+    cloud:
+        consul:
+            discovery:
+                healthCheckPath: /management/health
+                ip-address: 192.168.0.24
+                prefer-ip-address: true
+
+server:
+    servlet:
+        session:
+            cookie:
+                http-only: true
+
+info:
+    display-ribbon-on-profiles: "dev"

@@ -1,0 +1,44 @@
+server:
+  port: 8080
+
+zuul: # those values must be configured depending on the application specific needs
+  host:
+    max-total-connections: 1000
+    max-per-route-connections: 100
+    socket-timeout-millis: 57000
+    connect-timeout-millis: 57000
+  semaphore:
+    max-semaphores: 500
+  routes:
+    adidas-city-management:
+      path: /api/city/
+      serviceId: adidas-city-itinerary-management
+    adidas-itinerary-management:
+      path: /api/itinerary/
+      serviceId: adidas-city-itinerary-management
+    adidas-itinerary-search:
+      path: /api/search/
+      serviceId: adidas-city-itinerary-search
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 57000
+
+ribbon:
+  ConnectTimeout: 14000
+  ReadTimeout: 14000
+
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    consul:
+      discovery:
+        prefer-ip-address: true
+        ip-address: 192.168.0.24
+      jackson:
+        serialization.indent_output: true
